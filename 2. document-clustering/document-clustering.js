@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// QMINER 101 HANDS-ON TUTORIAL
+/// QMINER: DOCUMENT CLUSTERING
  /**
  * Abstract: the tutorial how to cluster documents using the k-means clustering
  * algorithm available in QMiner.
