@@ -1,0 +1,26 @@
+{
+  "name": "qminer-examples",
+  "version": "1.0.0",
+  "description": "Examples of QMiner usage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qminer/examples.git"
+  },
+  "keywords": [
+    "machine-learning",
+    "tutorials"
+  ],
+  "author": "",
+  "license": "BSD-2-Clause-FreeBSD",
+  "bugs": {
+    "url": "https://github.com/qminer/examples/issues"
+  },
+  "homepage": "https://github.com/qminer/examples#readme",
+  "dependencies": {
+    "qminer": "^9.2.4"
+  }
+}

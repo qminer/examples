@@ -1,7 +1,7 @@
-/************************************************
- * QMINER 101 HANDS-ON TUTORIAL
- *
- * Abstract: the notebook describes basic functionalities of the QMiner platform
+///////////////////////////////////////////////////////////////////////////////
+/// QMINER 101 HANDS-ON TUTORIAL
+ /**
+ * Abstract: the tutorial describes basic functionalities of the QMiner platform
  * (https://github.com/qminer/qminer) - an analytics platform for real-time
  * large-scale streams containing structured and unstructured data. In this
  * tutorial we will create a spam filter using the Support Vector Machine (SVM) model.
@@ -173,7 +173,7 @@ console.log('Database created, store list:', base.getStoreList());
  */
 
 // load the email examples
-const examples = require('./emails');
+const examples = require('../emails');
 console.log('Number of emails in file', examples.length);
 
 // push each email into the `Email` store of the QMiner database
