@@ -1,19 +1,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// QMINER 101 HANDS-ON TUTORIAL
  /**
- * Abstract: the tutorial describes basic functionalities of the QMiner platform
- * (https://github.com/qminer/qminer) - an analytics platform for real-time
- * large-scale streams containing structured and unstructured data. In this
- * tutorial we will create a spam filter using the Support Vector Machine (SVM) model.
+ * Abstract: the tutorial how to cluster documents using the k-means clustering
+ * algorithm available in QMiner.
  *
  * It shows the following functionalities:
  *
  * - importing the QMiner module into your Node.js project
- * - creating a QMiner database
- * - filling the database with new records
- * - extracting features from the records
- * - create a spam filter using the SVM model
- * - classify a new unlabelled record using the spam filter
+ * - preparing the feature extractors
+ * - create a number of clusters using KMeans
+ * - make a prediction -- in which cluster a new email falls into
  *
  * The QMiner documentation is available at
  * https://rawgit.com/qminer/qminer/master/nodedoc/index.html
