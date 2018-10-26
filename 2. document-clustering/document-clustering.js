@@ -184,17 +184,30 @@ let spamEmail = featureSpace.extractSparseVector({
 // first calculate the distances between the new email and the cluster centroids
 let distances = KMeans.centroids.multiplyT(spamEmail);
 
-// afterwards we search for the index with the lowest distance
-let minDistance = Infinity,
-    prediction  = 0;
 
-// iterate through distances
-for (let id = 0; id < distances.length; id++) {
-    if (distances[id] < minDistance) {
-        minDistance = distances[id];
-        prediction = id;
-    }
-}
+
+// afterwards we search for the index with the lowest distance
+
+let prediction = null;
+
+///////////////////////////////////////
+// DISTANCE TYPE: COS
+
+prediction = distances.getMaxIdx();
+
+
+///////////////////////////////////////
+// DISTANCE TYPE: EUCLID
+
+// let minDistance = Infinity;
+//
+// // iterate through distances
+// for (let id = 0; id < distances.length; id++) {
+//     if (distances[id] < minDistance) {
+//         minDistance = distances[id];
+//         prediction = id;
+//     }
+// }
 
 // show in which cluster the email falls into
 console.log('Get money quick! cluster id', prediction + 1);
