@@ -35,7 +35,7 @@ const schema = [
         fields: [ // fields contain the structure of the records in store
             { name: "subject", type: "string" },
             { name: "body", type: "string", null: true },
-            { name: "spam", type: "float" }
+            { name: "spam", type: "bool" }
         ]
         // NOTE: keys will not be required for this tutorial
     }
@@ -126,7 +126,20 @@ KMeans.fit(emailFeatures);
 // show the number of clusters in the model. This is retrieved by counting the
 // number of centroids the model created. A centroid is the average vector of all
 // records in a given cluster.
-console.log('KMeans number of clusters', KMeans.centroids.cols);
+let numberOfClusters = KMeans.centroids.cols;
+console.log('KMeans number of clusters', numberOfClusters);
+
+// output the most significant words for each centroid
+console.log('Get most significant words for each centroid');
+for (let i = 0; i < numberOfClusters; i++) {
+    console.log('centroid', i);
+    let centroid = KMeans.centroids.getCol(i);
+    let sort = centroid.sortPerm(false);
+    for (let i = 0; i < 10; i++) {
+        let maxId = sort.perm[i];
+        console.log('feature:', featureSpace.getFeature(maxId), '; weight:', centroid[maxId]);
+    }
+}
 
 
 ///////////////////////////////////////
@@ -184,16 +197,13 @@ let spamEmail = featureSpace.extractSparseVector({
 // first calculate the distances between the new email and the cluster centroids
 let distances = KMeans.centroids.multiplyT(spamEmail);
 
-
-
 // afterwards we search for the index with the lowest distance
-
 let prediction = null;
 
 ///////////////////////////////////////
 // DISTANCE TYPE: COS
-
 prediction = distances.getMaxIdx();
+
 
 
 ///////////////////////////////////////

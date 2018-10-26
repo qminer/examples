@@ -97,7 +97,7 @@ const schema = [
         fields: [ // fields contain the structure of the records in store
             { name: "subject", type: "string" },
             { name: "body", type: "string", null: true },
-            { name: "spam", type: "float" }
+            { name: "spam", type: "bool" }
         ],
         keys: [ // keys are required for indexing and for querying by different fields
             { field: "subject", type: "text" },
@@ -376,10 +376,11 @@ let SVC = new qm.analytics.SVC({ maxTime: 5 });
 let emailFeatures = featureSpace.extractSparseMatrix(emails);
 
 // extract the target spam labels from the `emails` record set
-let emailLabels = emails.getVector('spam');
+let binarizer = new qm.analytics.preprocessing.Binarizer(1, 1, -1);
+let emailLabels = binarizer.transform(emails.getVector('spam').toArray());
 
 // count the number of spam emails using the `.sum()` method
-console.log('number of spam emails', emailLabels.sum());
+console.log('number of spam emails', emailLabels.toArray().filter(x => x > 0).length);
 // before we fit the classifier it has no weights set
 console.log('SVC weights, before', SVC.weights.length);
 
@@ -391,6 +392,13 @@ SVC.fit(emailFeatures, emailLabels);
 // show the number of weights the model trained
 // should be the same number as the number features in the features space
 console.log('SVC weights, after', SVC.weights.length);
+
+console.log('features that indicate spam');
+let sort = SVC.weights.sortPerm(false);
+for (let i = 0; i < 10; i++) {
+    let maxId = sort.perm[i];
+    console.log('feature:', featureSpace.getFeature(maxId), '; weight:', SVC.weights[maxId]);
+}
 
 
 ///////////////////////////////////////

@@ -35,7 +35,7 @@ const schema = [
         fields: [ // fields contain the structure of the records in store
             { name: "subject", type: "string" },
             { name: "body", type: "string", null: true },
-            { name: "spam", type: "float" }
+            { name: "spam", type: "bool" }
         ]
         // NOTE: keys will not be required for this tutorial
     }
